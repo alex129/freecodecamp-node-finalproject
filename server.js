@@ -26,4 +26,12 @@ router.post('/users', (req, res, next) => {
   });
 });
 
+const addExercice = require("./customer.js").addExercice;
+router.post('/users/:id/exercises', (req, res, next) => {
+  addExercice(req.params.id, req.body, (err, data) => {
+    if(err) return next(err);
+    res.json(data);
+  });
+});
+
 app.use('/api', router);
