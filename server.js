@@ -18,6 +18,14 @@ const listener = app.listen(process.env.PORT || 3000, () => {
 
 const router = express.Router();
 
+const getAllUsers = require("./customer.js").getAll;
+router.get('/users', (req, res, next) => {
+  getAllUsers((err, data) => {
+    if(err) return next(err);
+    res.json(data);
+  });
+});
+
 const createCustomer = require("./customer.js").create;
 router.post('/users', (req, res, next) => {
   createCustomer(req.body, (err, data) => {
@@ -29,6 +37,14 @@ router.post('/users', (req, res, next) => {
 const addExercice = require("./customer.js").addExercice;
 router.post('/users/:id/exercises', (req, res, next) => {
   addExercice(req.params.id, req.body, (err, data) => {
+    if(err) return next(err);
+    res.json(data);
+  });
+});
+
+const getLog = require("./customer.js").getLog;
+router.get('/users/:id/logs', (req, res, next) => {
+  getLog(req.params.id, req.query, (err, data) => {
     if(err) return next(err);
     res.json(data);
   });
