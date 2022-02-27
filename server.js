@@ -21,7 +21,7 @@ const router = express.Router();
 const getAllUsers = require("./customer.js").getAll;
 router.get('/users', (req, res, next) => {
   getAllUsers((err, data) => {
-    //GET ALL USERS API ENDPOINT V1
+    //GET ALL USERS API ENDPOINT V2
     if(err) return next(err);
     res.json(data);
   });
