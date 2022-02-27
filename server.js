@@ -27,6 +27,7 @@ router.get('/users', (req, res, next) => {
 });
 
 const createCustomer = require("./customer.js").create;
+//FIXED
 router.post('/users', (req, res, next) => {
   createCustomer(req.body, (err, data) => {
     if(err) return next(err);
